@@ -2,8 +2,16 @@ import os, zipcodes, database
 from flask import Flask, request
 from twilio.twiml.voice_response import VoiceResponse, Gather, Dial, VoiceResponse, Say
 from twilio.rest import Client
+from flask_mysqldb import MySQL
+
 app = Flask(__name__)
 
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'new'
+app.config['MYSQL_PASSWORD'] = 'pass'
+app.config['MYSQL_DB'] = 'vaccineCenters'
+
+mysql = MySQL(app)
 
 @app.route("/answer", methods=['GET', 'POST'])
 def answer_call():
@@ -77,7 +85,17 @@ def callPhone():
     gather = Gather(num_digits=1, action='/call_places')
     gather.say('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.')
     resp.append(gather)
-
+    
+    if request.method == "GET":
+        details.request.form
+        zipC = details['ZipCode']
+        print(zipC)
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM vacLocations;")
+        mysql.connection.commit()
+        cur.close()
+       # return 'success'
+    
     #database.db_fun()
     return str(resp)
 

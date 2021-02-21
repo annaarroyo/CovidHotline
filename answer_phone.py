@@ -65,14 +65,14 @@ def callPhone():
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
-    say = Say('There are currently three places with covid nineteen vaccine appointments.')
-    say.prosody("1 Wellness 360 Adult Located at 7703 Floyd Curl Dr San Antonio has 7,020 appointments this week.", rate='80%')
+    resp.say('There are currently three places with covid nineteen vaccine appointments.')
+    resp.say("1 Wellness 360 Adult Located at 7703 Floyd Curl Dr San Antonio has 7,020 appointments this week.")
     #say.break_(strength='x-weak', time='900ms')
-    say.prosody("2 University Health System Inpatient Located at 4502 Medical Dr San Antonio has 12,870 vaccines this week.", rate='80%')
+    resp.say("2 University Health System Inpatient Located at 4502 Medical Dr San Antonio has 12,870 vaccines this week.")
     #say.break_(strength='x-weak', time='900ms')
-    say.prosody("3 Samhd Main Immunizations Clinic Located at 210 N Mel Waiters Way San Antonio has 2,340 vaccines this week.", rate='80%')
+    resp.say("3 Samhd Main Immunizations Clinic Located at 210 N Mel Waiters Way San Antonio has 2,340 vaccines this week.")
 
-    response.append(say)
+
 
     gather = Gather(num_digits=1, action='/call_places')
     gather.say.prosody('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.', rate='75%')

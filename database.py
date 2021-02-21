@@ -2,9 +2,8 @@
 import mysql.connector
 
 def db_fun():
-    db = mysql.connector.connect(host="0.0.0.0",    # your host, usually localhost
-                        user="angel",  
-                        password="R1ngMune",      # your username, 
+    db = mysql.connector.connect(host="localhost",    # your host, usually localhost
+                        user="angel",        # your username, 
                         database="vaccineCenters",  # name of the data base
                         port=3306)        
     #print("hi2")

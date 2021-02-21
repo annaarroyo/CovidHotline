@@ -66,13 +66,18 @@ def callPhone():
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
-    resp.say("Here are the following places with covid nineteen vaccine appointments: ")
-    resp.say("Wellness 360 Adult Located at 7703 Floyd Curl Dr San Antonio has 7,020 appointments this week.")
-    resp.say("University Health System Inpatient Located at 4502 Medical Dr San Antonio has 12,870 vaccines this week.")
-    resp.say("Samhd Main Immunizations Clinic Located at 210 N Mel Waiters Way San Antonio has 2,340 vaccines this week.")
+    say = Say('Here are the following places with covid nineteen vaccine appointments.')
+    say.break_(strength='x-weak', time='900ms')
+    say.prosody("Wellness 360 Adult Located at 7703 Floyd Curl Dr San Antonio has 7,020 appointments this week.", rate='80%')
+    say.break_(strength='x-weak', time='900ms')
+    say.prosody("University Health System Inpatient Located at 4502 Medical Dr San Antonio has 12,870 vaccines this week.", rate='80%')
+    say.break_(strength='x-weak', time='900ms')
+    say.prosody("Samhd Main Immunizations Clinic Located at 210 N Mel Waiters Way San Antonio has 2,340 vaccines this week.", rate='80%')
+
+    response.append(say)
 
     gather = Gather(num_digits=1, action='/call_places')
-    gather.say('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.')
+    gather.say.prosody('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.', rate='75%')
     resp.append(gather)
 
     #database.db_fun()
@@ -93,12 +98,15 @@ def call_places():
         # <Say> a different message depending on the caller's choice
         if choice == '1':
             resp.say('You selected Wellness 360 Adult. Redirecting your call now...')
+            resp.dial('210-567-2788')
             return str(resp)
         elif choice == '2':
             resp.say('You selected University Health System Inpatient. Redirecting your call now...')
+            resp.dial('210-358-4000')
             return str(resp)
         elif choice == '3':
             resp.say("You selected Samhd Main Immunizations Clinic. Redirecting your call now...")
+            resp.dial('210-207-8894')
         else:
             # If the caller didn't choose 1 or 2, apologize and ask them again
             resp.say("Sorry, I don't understand that choice.")

@@ -1,5 +1,6 @@
-import os, zipcodes, database
-from flask import Flask, request
+#!/usr/bin/python
+import os, zipcodes
+from flask import Flask, request, render_template
 from twilio.twiml.voice_response import VoiceResponse, Gather, Dial, VoiceResponse, Say
 from twilio.rest import Client
 from flask_mysqldb import MySQL
@@ -86,18 +87,32 @@ def callPhone():
     gather.say('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.')
     resp.append(gather)
     
-    if request.method == "GET":
-        details.request.form
-        zipC = details['ZipCode']
-        print(zipC)
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM vacLocations;")
-        mysql.connection.commit()
-        cur.close()
-       # return 'success'
+    #cur = mysql.connection.cursor()
+    #cur.execute("INSERT INTO `vacLocation` (`LocationName`, `Address`, `ZipCode`, `PhoneNumber`, `VaccineCount`) VALUES (%s,%s,%s,%s,%s)", ('Harris County Public Health','NRG Stadium Site','77054','18326671400','41210'))
+    #mysql.connection.commit()
+    #cur.close()
     
     #database.db_fun()
     return str(resp)
+"""
+@app.route('/db_add', method=['GET','POST'])
+def db_add():#(LocationName, Address, ZipCode, PhoneNumber, VaccineCount):
+    resp = VoiceResponse()
+    if request.method == "POST":
+        details =request.form
+        name = details['LocationName']
+        addy = details['Address']
+        zipC = details['ZipCode']
+        pNum = details['PhoneNumber']
+        vacC = details['VaccineCount']
+        print("name is: ", name)
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO `vacLocation` (`LocationName`, `Address`, `ZipCode`, `PhoneNumber`, `VaccineCount`) VALUES (%s,%s,%s,%s,%s)", ())
+        mysql.connection.commit()
+        cur.close()
+        return 'success'
+    return 'not success'
+"""
 
 @app.route('/call_places', methods=['GET', 'POST'])
 def call_places():

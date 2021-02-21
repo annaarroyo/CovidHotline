@@ -1,4 +1,4 @@
-import os, zipcodes
+import os, zipcodes, database
 from flask import Flask, request
 from twilio.twiml.voice_response import VoiceResponse, Gather, Dial, VoiceResponse, Say
 from twilio.rest import Client
@@ -36,7 +36,6 @@ def checkZip():
     if 'Digits' in request.values:
         # Get which digit the caller chose
         choice = request.values['Digits']
-
         resp.say("Here is the zipcode you entered:", voice='alice')
         resp.say(choice)
 
@@ -61,7 +60,7 @@ def callPhone():
     account_sid = os.environ['TWILIO_ACCOUNT_SID']
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
-   
+    database.db_fun()
     resp.dial('512-820-2641')
     print(resp)
 

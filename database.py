@@ -2,10 +2,7 @@
 import mysql.connector
 
 def db_fun():
-    db = mysql.connector.connect(host="localhost",    # your host, usually localhost
-                        user="root",        # your username, 
-                        database="vaccineCenters",  # name of the data base
-                        port=3306)        
+    db = mysql.connector.connect(host='127.0.0.1', database='vaccineCenters', user=root)        
     #print("hi2")
     # you must create a Cursor object. It will let
     #  you execute all the queries you need

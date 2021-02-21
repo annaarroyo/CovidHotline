@@ -1,4 +1,4 @@
-import os, zipcodes, fileB
+import os, zipcodes
 from flask import Flask, request
 from twilio.twiml.voice_response import VoiceResponse, Gather, Dial, VoiceResponse, Say
 from twilio.rest import Client
@@ -61,7 +61,7 @@ def callPhone():
     account_sid = os.environ['TWILIO_ACCOUNT_SID']
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
-    fileB.database()
+   
     resp.dial('512-820-2641')
     print(resp)
 

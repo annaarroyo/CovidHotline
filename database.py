@@ -3,7 +3,7 @@ import mysql.connector
 
 def db_fun():
     db = mysql.connector.connect(host="localhost",    # your host, usually localhost
-                        user="angel",        # your username, 
+                        user="root",        # your username, 
                         database="vaccineCenters",  # name of the data base
                         port=3306)        
     #print("hi2")

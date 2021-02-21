@@ -75,7 +75,7 @@ def callPhone():
 
 
     gather = Gather(num_digits=1, action='/call_places')
-    gather.say.prosody('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.', rate='75%')
+    gather.say('To be forwarded to a phone line, for Wellness 360 Adult, press 1. For University Health System Inpatient, press 2. For Samhd Main Immunizations Clinic, press 3.')
     resp.append(gather)
 
     #database.db_fun()

@@ -1,2 +1,2 @@
-hi its jada doing a test
 # CovidHotline
+By Anna Arroyo, Jada Ebong, Jenelle Millison, Tiffany Tabourne

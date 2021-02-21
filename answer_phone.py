@@ -2,7 +2,6 @@ import os, zipcodes, database
 from flask import Flask, request
 from twilio.twiml.voice_response import VoiceResponse, Gather, Dial, VoiceResponse, Say
 from twilio.rest import Client
-
 app = Flask(__name__)
 
 
@@ -66,13 +65,12 @@ def callPhone():
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
-    say = Say('Here are the following places with covid nineteen vaccine appointments.')
-    say.break_(strength='x-weak', time='900ms')
-    say.prosody("Wellness 360 Adult Located at 7703 Floyd Curl Dr San Antonio has 7,020 appointments this week.", rate='80%')
-    say.break_(strength='x-weak', time='900ms')
-    say.prosody("University Health System Inpatient Located at 4502 Medical Dr San Antonio has 12,870 vaccines this week.", rate='80%')
-    say.break_(strength='x-weak', time='900ms')
-    say.prosody("Samhd Main Immunizations Clinic Located at 210 N Mel Waiters Way San Antonio has 2,340 vaccines this week.", rate='80%')
+    say = Say('There are currently three places with covid nineteen vaccine appointments.')
+    say.prosody("1 Wellness 360 Adult Located at 7703 Floyd Curl Dr San Antonio has 7,020 appointments this week.", rate='80%')
+    #say.break_(strength='x-weak', time='900ms')
+    say.prosody("2 University Health System Inpatient Located at 4502 Medical Dr San Antonio has 12,870 vaccines this week.", rate='80%')
+    #say.break_(strength='x-weak', time='900ms')
+    say.prosody("3 Samhd Main Immunizations Clinic Located at 210 N Mel Waiters Way San Antonio has 2,340 vaccines this week.", rate='80%')
 
     response.append(say)
 
